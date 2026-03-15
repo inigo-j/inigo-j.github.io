@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inigo | IT Administrator</title>
+<meta property="og:title" conetent="Inigo | IT Administrator Portfolio">
+<meta property="og:description" content="Network Engineer | Cybersecurity Enthusiast">
+<link rel="icon" href="INIGO.png.jpg">
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#020617;
+color:white;
+}
+
+/* NAVBAR */
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 60px;
+background:rgb(41, 40, 40);
+border-bottom:2px solid #00ff9d;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+nav h2{
+color:#00ff9d;
+letter-spacing:2px;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:30px;
+}
+
+nav a{
+text-decoration:none;
+color:white;
+font-weight:500;
+transition:.3s;
+}
+
+nav a:hover{
+color:#00ff9d;
+}
+
+/* MOBILE NAV */
+
+@media(max-width:768px){
+
+nav{
+flex-direction:column;
+gap:15px;
+}
+
+nav ul{
+flex-direction:column;
+align-items:center;
+}
+
+}
+
+/* HERO */
+
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+flex-direction:column;
+padding:20px;
+}
+
+.hero img{
+width:150px;
+border-radius:50%;
+border:3px solid #00ff9d;
+margin-bottom:20px;
+box-shadow:0 0 25px #00ff9d;
+}
+
+.hero h1{
+font-size:50px;
+color:#00ff9d;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:20px;
+color:#cbd5f5;
+}
+
+/* BUTTON */
+
+.btn{
+display:inline-block;
+margin-top:20px;
+padding:12px 30px;
+border:2px solid #00ff9d;
+color:#00ff9d;
+text-decoration:none;
+border-radius:30px;
+transition:.3s;
+}
+
+.btn:hover{
+background:#00ff9d;
+color:black;
+box-shadow:0 0 20px #00ff9d;
+transform:scale(1.1);
+}
+
+/* SECTION */
+
+section{
+padding:80px 10%;
+}
+
+section h2{
+text-align:center;
+margin-bottom:40px;
+font-size:32px;
+color:#00ff9d;
+}
+
+/* SKILLS */
+
+.skills{
+display:flex;
+flex-wrap:wrap;
+gap:30px;
+justify-content:center;
+}
+
+.card{
+background:#000;
+padding:30px;
+border-radius:15px;
+width:260px;
+text-align:center;
+border:1px solid #00ff9d;
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 20px #00ff9d;
+}
+
+.card i{
+font-size:40px;
+color:#00ff9d;
+margin-bottom:15px;
+}
+
+/* PROJECT */
+
+.project{
+background:black;
+padding:30px;
+border-radius:15px;
+text-align:center;
+max-width:600px;
+margin:auto;
+border:1px solid #00ff9d;
+}
+
+/* CONTACT */
+
+.contact{
+text-align:center;
+}
+
+.contact p{
+margin:10px;
+}
+
+/* RATING */
+
+.rating-box{
+max-width:400px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:8px;
+Padding:20px;
+Background:#000;
+border:1px solid #00ff9d;
+border-radius:12px;
+}
+.small-feedback{
+height:30px;
+width:100%;
+padding:6px;
+font-size:14px;
+border-radius:6px;
+border:none;
+resize:none;
+}
+.rating-box select,
+.rating-box input,
+.rating-box textarea{
+    padding:6px;
+    font-size:14px;
+    border-radius:5px;
+    border:none;
+}
+.rating-box textarea{
+height:30px;
+resize:none;
+}
+
+textarea{
+padding:10px;
+height:50px;
+border-radius:8px;
+border:none;
+}
+form textarea{
+height:700px;
+width:100%;
+font-size:14px;
+padding:6px;
+border-radius:6px;
+resize:none;
+}
+
+.rating-box button{
+padding:8px;
+font-size:14px;
+border-radius:6px;
+}
+
+.review{
+background:black;
+padding:15px;
+margin-top:15px;
+border-left:3px solid #00ff9d;
+}
+form button{
+background:#00ff9d;
+color:black;
+border:none;
+padding:8px 14px;
+font-size:14px;
+border-radius:6px;
+cursor:pointer;
+transition:0.3s;
+font-weight:bold;
+}
+form button:hover{
+background:#00cc7a;
+box-shadow:0 0 15px #00ff9d;
+}
+form label{
+color:#00ff9d;
+font-weight:bold;
+}
+
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:20px;
+margin-top:40px;
+background:black;
+border-top:1px solid #00ff9d;
+}
+
+</style>
+</head>
+
+<body>
+<script>
+
+function submitReview(){
+
+let star = document.getElementById("stars").value
+let comment = document.getElementById("comment").value
+
+let review = document.createElement("div")
+review.className="review"
+
+review.innerHTML = `
+<p><b>Rating:</b> ${star}</p>
+<p>${comment}</p>
+`
+
+document.getElementById("reviews").appendChild(review)
+
+document.getElementById("comment").value=""
+
+}
+
+</script>
+<!-- NAVBAR -->
+
+<nav>
+
+<h2>INIGO</h2>
+
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+</nav>
+
+<!-- HERO -->
+
+<div class="hero">
+
+<p>IT Administrator | Network Engineer | Cybersecurity Enthusiast</p>
+
+<a href="#contact" class="btn">Hire Me</a>
+
+<a href="ingresumeH.pdf" download class="btn">Download Resume</a>
+<h1>INIGO</h1>
+
+</div>
+
+<!-- SKILLS -->
+
+<section id="skills">
+
+<h2>Technical Skills</h2>
+
+<div class="skills">
+
+<div class="card">
+
+<i class="fa-solid fa-server"></i>
+
+<h3>System Administrator</h3>
+
+<p>
+Windows Server<br>
+Active Directory<br>
+User Management<br>
+Troubleshooting
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-network-wired"></i>
+
+<h3>Networking</h3>
+
+<p>
+TCP/IP<br>
+DNS<br>
+DHCP<br>
+Router Configuration
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+<h3>Cybersecurity</h3>
+
+<p>
+Wireshark<br>
+Network Monitoring<br>
+Security Basics
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PROJECT -->
+
+<section id="projects">
+
+<h2>Projects</h2>
+
+<div class="project">
+
+<h3>Home Lab Network</h3>
+
+<p>
+Built a virtual lab using VMware.
+Configured Windows Server, DNS, DHCP, and Active Directory.
+Tested network monitoring and cybersecurity tools.
+</p>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<h2>Contact</h2>
+
+<div class="contact">
+
+<p>Email: inigojayaraj@gmail.com</p>
+<p>LinkedIn: linkedin.com/in/inigo</p>
+<p>GitHub: github.com/inigo</p>
+
+</div>
+
+</section>
+
+<!-- RATING -->
+
+<form action="https://formspree.io/f/maqpdobk" method="POST">
+
+<label>Structure</label>
+<select name="structure">
+<option>⭐</option>
+<option>⭐⭐</option>
+<option>⭐⭐⭐</option>
+<option>⭐⭐⭐⭐</option>
+<option>⭐⭐⭐⭐⭐</option>
+</select>
+
+<label>Design</label>
+<select name="design">
+<option>⭐</option>
+<option>⭐⭐</option>
+<option>⭐⭐⭐</option>
+<option>⭐⭐⭐⭐</option>
+<option>⭐⭐⭐⭐⭐</option>
+</select>
+
+<textarea class="small-feedback" name="message" placeholder="Write feedback"></textarea>
+
+<button type="submit">Submit Review</button>
+
+</form>
+
+<!-- FOOTER -->
+
+<footer>
+
+<p>© 2026 Inigo | IT Administrator | Cybersecurity Enthusiast</p>
+
+</footer>
+
+</body>
+</html>
