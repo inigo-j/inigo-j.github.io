@@ -3,169 +3,1759 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inigo | Portfolio</title>
+
+<title>INIGO | Cybersecurity & Network Engineer</title>
 
 <link rel="icon" href="INIGO.png.jpg">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-body{background:#0d1117;color:#e6edf3;position:relative;overflow-x:hidden;}
 
-/* MATRIX CANVAS */
-#matrix{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;}
+/* =========================================================
+   GLOBAL
+========================================================= */
 
-/* OVERLAY CONTAINERS */
-.overlay{position:relative;z-index:1;background:rgba(13,17,23,0.85);padding:20px;border-radius:5px;margin-bottom:20px;}
-
-/* NAVBAR */
-nav{display:flex;justify-content:space-between;align-items:center;padding:15px 20px;background:rgba(13,17,23,0.9);border-bottom:1px solid #1f2933;z-index:2;flex-wrap:wrap;}
-nav h2{color:#00ff9d;}
-nav ul{display:flex;list-style:none;gap:20px;flex-wrap:wrap;}
-nav a{text-decoration:none;color:#e6edf3;font-weight:500;}
-nav a:hover{color:#00ff9d;}
-
-/* HERO */
-.hero{height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;z-index:1;}
-.hero h1{font-size:48px;color:#00ff9d;margin:10px 0;}
-.hero p{color:#9ca3af;font-size:18px;text-align:center;max-width:90%;}
-
-/* BUTTON */
-.btn{display:inline-block;margin:10px 5px;padding:10px 25px;border:1px solid #00ff9d;color:#00ff9d;text-decoration:none;border-radius:5px;transition:0.3s;}
-.btn:hover{background:#00ff9d;color:#0d1117;}
-
-/* SKILLS */
-.skills{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;padding:40px;}
-.card{background:rgba(22,27,34,0.9);padding:20px;border-radius:10px;width:220px;text-align:center;cursor:pointer;border:1px solid #1f2933;transition:0.3s;}
-.card:hover{border-color:#00ff9d;}
-.card i{font-size:30px;margin-bottom:10px;color:#00ff9d;}
-
-/* PROJECTS */
-.project-detail{display:none;background:rgba(22,27,34,0.95);padding:20px;margin:20px auto;max-width:600px;border-radius:10px;border:1px solid #1f2933;}
-
-/* SECTIONS */
-section{padding:50px 20px;text-align:center;}
-h2{margin-bottom:20px;color:#00ff9d;}
-
-/* CONTACT */
-.contact p{margin:8px 0;font-size:16px;color:#e6edf3;}
-.contact a{color:#00ff9d;text-decoration:none;}
-.contact a:hover{text-decoration:underline;}
-
-/* FOOTER */
-footer{text-align:center;padding:20px;border-top:1px solid #1f2933;margin-top:40px;}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-  nav{flex-direction:column;gap:10px;}
-  nav ul{flex-direction:column;align-items:center;gap:10px;}
-  .hero h1{font-size:36px;}
-  .hero p{font-size:16px;}
-  .card{width:90%;}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#05080c;
+    color:#d7e2e8;
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+}
+
+/* =========================================================
+   NETWORK BACKGROUND
+========================================================= */
+
+#networkCanvas{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:-5;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(0,255,157,0.06),
+            transparent 45%
+        ),
+        #05080c;
+}
+
+/* Cyber grid */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-3;
+
+    background-image:
+        linear-gradient(
+            rgba(0,255,157,0.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0,255,157,0.035) 1px,
+            transparent 1px
+        );
+
+    background-size:50px 50px;
+
+    mask-image:linear-gradient(
+        to bottom,
+        transparent,
+        black 20%,
+        black 80%,
+        transparent
+    );
+}
+
+/* CRT scanlines */
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:999;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.018) 0px,
+            rgba(255,255,255,0.018) 1px,
+            transparent 1px,
+            transparent 4px
+        );
+
+    opacity:.35;
+}
+
+/* =========================================================
+   COMMON
+========================================================= */
+
+.container{
+    width:min(1150px,92%);
+    margin:auto;
+}
+
+.section{
+    padding:100px 0;
+    position:relative;
+}
+
+.section-title{
+    font-family:'JetBrains Mono',monospace;
+    color:#00ff9d;
+    font-size:14px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:12px;
+}
+
+.section-heading{
+    font-size:38px;
+    margin-bottom:45px;
+    color:#e8f5ef;
+}
+
+.green{
+    color:#00ff9d;
+}
+
+.cyan{
+    color:#00d9ff;
+}
+
+.muted{
+    color:#7f8b95;
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    background:rgba(5,8,12,.88);
+    backdrop-filter:blur(15px);
+
+    border-bottom:1px solid rgba(0,255,157,.15);
+}
+
+.nav-container{
+    width:min(1150px,92%);
+    margin:auto;
+
+    min-height:70px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-family:'JetBrains Mono',monospace;
+    font-size:21px;
+    font-weight:700;
+    color:#00ff9d;
+}
+
+.logo span{
+    color:#50616b;
+}
+
+.nav-status{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:#00ff9d;
+    margin-left:12px;
+}
+
+.status-dot{
+    display:inline-block;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#00ff9d;
+    box-shadow:0 0 10px #00ff9d;
+    margin-right:6px;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:28px;
+}
+
+nav a{
+    color:#9baab3;
+    text-decoration:none;
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#00ff9d;
+    text-shadow:0 0 10px rgba(0,255,157,.6);
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    min-height:calc(100vh - 70px);
+
+    display:flex;
+    align-items:center;
+
+    position:relative;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.3fr .7fr;
+    gap:70px;
+    align-items:center;
+}
+
+.terminal-label{
+    font-family:'JetBrains Mono',monospace;
+    color:#00d9ff;
+    font-size:13px;
+    margin-bottom:20px;
+}
+
+.terminal-label::before{
+    content:"root@inigo:~$ ";
+    color:#00ff9d;
+}
+
+.hero h1{
+    font-size:clamp(45px,7vw,82px);
+    line-height:1;
+    letter-spacing:-4px;
+    margin-bottom:25px;
+}
+
+.hero h1 span{
+    color:#00ff9d;
+    text-shadow:
+        0 0 15px rgba(0,255,157,.4),
+        0 0 40px rgba(0,255,157,.15);
+}
+
+.hero-description{
+    max-width:650px;
+    color:#8e9ba4;
+    line-height:1.8;
+    font-size:16px;
+    margin-bottom:30px;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+
+    padding:13px 22px;
+
+    border:1px solid #00ff9d;
+    color:#00ff9d;
+    text-decoration:none;
+
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+
+    background:rgba(0,255,157,.03);
+
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#00ff9d;
+    color:#05080c;
+    box-shadow:
+        0 0 20px rgba(0,255,157,.35);
+}
+
+.btn-secondary{
+    border-color:#263842;
+    color:#9baab3;
+}
+
+.btn-secondary:hover{
+    border-color:#00d9ff;
+    background:#00d9ff;
+}
+
+/* =========================================================
+   TERMINAL
+========================================================= */
+
+.terminal{
+    background:rgba(6,11,15,.92);
+
+    border:1px solid #1b343b;
+
+    box-shadow:
+        0 0 40px rgba(0,255,157,.05),
+        inset 0 0 30px rgba(0,255,157,.02);
+
+    font-family:'JetBrains Mono',monospace;
+}
+
+.terminal-header{
+    height:38px;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 13px;
+
+    border-bottom:1px solid #1b343b;
+}
+
+.terminal-dots{
+    display:flex;
+    gap:6px;
+}
+
+.terminal-dots span{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+}
+
+.red{background:#ff5f56;}
+.yellow{background:#ffbd2e;}
+.green-dot{background:#27c93f;}
+
+.terminal-title{
+    margin-left:auto;
+    margin-right:auto;
+    color:#52646d;
+    font-size:11px;
+}
+
+.terminal-body{
+    padding:22px;
+    min-height:300px;
+    font-size:12px;
+    line-height:2;
+}
+
+.command{
+    color:#00ff9d;
+}
+
+.command::before{
+    content:"$ ";
+    color:#50616b;
+}
+
+.output{
+    color:#73848d;
+}
+
+.success{
+    color:#00ff9d;
+}
+
+.warning{
+    color:#ffc857;
+}
+
+.cursor{
+    display:inline-block;
+    width:8px;
+    height:15px;
+    background:#00ff9d;
+    animation:blink 1s infinite;
+    vertical-align:middle;
+}
+
+@keyframes blink{
+    50%{opacity:0;}
+}
+
+/* =========================================================
+   STATUS BAR
+========================================================= */
+
+.status-bar{
+    margin-top:60px;
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+
+    border-top:1px solid #16262c;
+    border-bottom:1px solid #16262c;
+}
+
+.status-item{
+    padding:20px;
+
+    border-right:1px solid #16262c;
+
+    font-family:'JetBrains Mono',monospace;
+}
+
+.status-item:last-child{
+    border-right:none;
+}
+
+.status-name{
+    color:#52646d;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.status-value{
+    margin-top:7px;
+    color:#00ff9d;
+    font-size:13px;
+}
+
+/* =========================================================
+   SKILLS
+========================================================= */
+
+.skills-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.skill-card{
+    position:relative;
+
+    padding:30px;
+
+    background:rgba(8,14,18,.82);
+
+    border:1px solid #17292f;
+
+    transition:.35s;
+
+    overflow:hidden;
+}
+
+.skill-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+
+    width:0;
+    height:2px;
+
+    background:#00ff9d;
+
+    transition:.4s;
+}
+
+.skill-card:hover{
+    transform:translateY(-6px);
+    border-color:#00ff9d;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.4),
+        0 0 25px rgba(0,255,157,.08);
+}
+
+.skill-card:hover::before{
+    width:100%;
+}
+
+.skill-icon{
+    font-size:30px;
+    color:#00ff9d;
+    margin-bottom:20px;
+}
+
+.skill-card h3{
+    margin-bottom:12px;
+}
+
+.skill-card p{
+    color:#71818a;
+    font-size:14px;
+    line-height:1.7;
+}
+
+/* =========================================================
+   PROJECTS
+========================================================= */
+
+.project-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.project-card{
+    background:rgba(8,14,18,.9);
+
+    border:1px solid #17292f;
+
+    padding:28px;
+
+    position:relative;
+
+    transition:.35s;
+}
+
+.project-card:hover{
+    border-color:#00d9ff;
+    transform:translateY(-6px);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.5),
+        0 0 30px rgba(0,217,255,.07);
+}
+
+.project-number{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:#00d9ff;
+    margin-bottom:18px;
+}
+
+.project-card h3{
+    margin-bottom:15px;
+    font-size:21px;
+}
+
+.project-card p{
+    color:#7c8b94;
+    font-size:14px;
+    line-height:1.8;
+    margin-bottom:20px;
+}
+
+.project-list{
+    list-style:none;
+}
+
+.project-list li{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:#9baab3;
+    margin:10px 0;
+}
+
+.project-list li::before{
+    content:"[+] ";
+    color:#00ff9d;
+}
+
+/* =========================================================
+   EXPERIENCE
+========================================================= */
+
+.timeline{
+    border-left:1px solid #1c343b;
+    margin-left:10px;
+}
+
+.timeline-item{
+    position:relative;
+    padding:0 0 50px 35px;
+}
+
+.timeline-item::before{
+    content:"";
+
+    position:absolute;
+
+    width:9px;
+    height:9px;
+
+    border-radius:50%;
+
+    background:#00ff9d;
+
+    left:-5px;
+    top:5px;
+
+    box-shadow:0 0 15px #00ff9d;
+}
+
+.timeline-date{
+    font-family:'JetBrains Mono',monospace;
+    color:#00d9ff;
+    font-size:11px;
+    margin-bottom:8px;
+}
+
+.timeline-item h3{
+    margin-bottom:10px;
+}
+
+.timeline-item p{
+    max-width:800px;
+    color:#77868e;
+    line-height:1.8;
+    font-size:14px;
+}
+
+/* =========================================================
+   TERMINAL COMMANDS
+========================================================= */
+
+.command-panel{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.command-box{
+    background:#060b0f;
+    border:1px solid #17292f;
+    padding:25px;
+    font-family:'JetBrains Mono',monospace;
+}
+
+.command-box h3{
+    font-size:13px;
+    color:#00ff9d;
+    margin-bottom:20px;
+}
+
+.command-box p{
+    color:#6f7f87;
+    font-size:12px;
+    line-height:2;
+}
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact-box{
+    border:1px solid #173139;
+    background:rgba(6,12,16,.9);
+    padding:40px;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+}
+
+.contact-item{
+    padding:20px;
+    border:1px solid #14262d;
+}
+
+.contact-item i{
+    color:#00ff9d;
+    margin-right:10px;
+}
+
+.contact-item a{
+    color:#9baab3;
+    text-decoration:none;
+}
+
+.contact-item a:hover{
+    color:#00ff9d;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    border-top:1px solid #15272d;
+
+    padding:30px 0;
+
+    text-align:center;
+
+    font-family:'JetBrains Mono',monospace;
+
+    font-size:11px;
+
+    color:#52646d;
+}
+
+.footer-green{
+    color:#00ff9d;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:900px){
+
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
+
+    .terminal{
+        margin-top:30px;
+    }
+
+    .skills-grid,
+    .project-grid{
+        grid-template-columns:1fr;
+    }
+
+    .status-bar{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .status-item{
+        border-bottom:1px solid #16262c;
+    }
+
+    .command-panel{
+        grid-template-columns:1fr;
+    }
+
+    .contact-box{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    nav ul{
+        display:none;
+    }
+
+    .nav-container{
+        justify-content:center;
+    }
+
+    .hero h1{
+        letter-spacing:-2px;
+    }
+
+    .section{
+        padding:70px 0;
+    }
+
+    .section-heading{
+        font-size:30px;
+    }
+
+    .status-bar{
+        grid-template-columns:1fr;
+    }
+
+    .status-item{
+        border-right:none;
+    }
+
+}
+
 </style>
 </head>
+
 <body>
 
-<canvas id="matrix"></canvas>
+<!-- =====================================================
+     NETWORK BACKGROUND
+===================================================== -->
+
+<canvas id="networkCanvas"></canvas>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
 
 <nav>
-<h2>INIGO</h2>
+
+<div class="nav-container">
+
+<div class="logo">
+INIGO<span>_SEC</span>
+
+<span class="nav-status">
+<span class="status-dot"></span>
+ONLINE
+</span>
+
+</div>
+
 <ul>
-<li><a href="#">Home</a></li>
-<li><a href="#skills">Skills</a></li>
-<li><a href="#projects">Projects</a></li>
-<li><a href="#contact">Contact</a></li>
+<li><a href="#home">01_HOME</a></li>
+<li><a href="#skills">02_SKILLS</a></li>
+<li><a href="#projects">03_PROJECTS</a></li>
+<li><a href="#experience">04_EXPERIENCE</a></li>
+<li><a href="#contact">05_CONTACT</a></li>
 </ul>
+
+</div>
+
 </nav>
 
-<div class="hero overlay">
-<p>IT Administrator | Network Engineer | Cybersecurity Enthusiast</p>
-<h1>INIGO</h1>
-<a href="#projects" class="btn">View Work</a>
-<a href="ingresumeH.pdf" download class="btn">Download Resume</a>
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero" id="home">
+
+<div class="container">
+
+<div class="hero-grid">
+
+<div>
+
+<div class="terminal-label">
+secure connection established
 </div>
 
-<div class="skills overlay" id="skills">
-<div class="card" onclick="showProject('system')"><i class="fa-solid fa-server"></i><h3>System Admin</h3></div>
-<div class="card" onclick="showProject('network')"><i class="fa-solid fa-network-wired"></i><h3>Networking</h3></div>
-<div class="card" onclick="showProject('cyber')"><i class="fa-solid fa-shield-halved"></i><h3>Cybersecurity</h3></div>
+<h1>
+IT <span>ADMIN</span><br>
+NETWORK <span>ENGINEER</span>
+</h1>
+
+<p class="hero-description">
+IT Administrator and Network Engineering professional focused on
+Windows Server administration, networking, infrastructure monitoring,
+system security and cybersecurity operations.
+</p>
+
+<a href="#projects" class="btn">
+<i class="fa-solid fa-terminal"></i>
+VIEW PROJECTS
+</a>
+
+<a href="ingresumeH.pdf" download class="btn btn-secondary">
+<i class="fa-solid fa-download"></i>
+DOWNLOAD CV
+</a>
+
 </div>
 
-<section id="projects" class="overlay">
-<h2>Projects</h2>
-<div id="system" class="project-detail"><p>• Windows Server setup<br>• Active Directory management<br>• Group policy configuration</p></div>
-<div id="network" class="project-detail"><p>• Router and switch configuration<br>• DHCP & DNS setup<br>• Network troubleshooting</p></div>
-<div id="cyber" class="project-detail"><p>• Wireshark packet analysis<br>• Network monitoring<br>• Basic security practices</p></div>
+
+<!-- TERMINAL -->
+
+<div class="terminal">
+
+<div class="terminal-header">
+
+<div class="terminal-dots">
+<span class="red"></span>
+<span class="yellow"></span>
+<span class="green-dot"></span>
+</div>
+
+<div class="terminal-title">
+inigo@security-node
+</div>
+
+</div>
+
+<div class="terminal-body">
+
+<div class="command">
+whoami
+</div>
+
+<div class="output">
+inigo
+</div>
+
+<br>
+
+<div class="command">
+systemctl status security
+</div>
+
+<div class="success">
+● security.service - ACTIVE
+</div>
+
+<div class="output">
+Protection: ENABLED
+</div>
+
+<div class="output">
+Network: CONNECTED
+</div>
+
+<div class="output">
+Monitoring: ACTIVE
+</div>
+
+<br>
+
+<div class="command">
+scan --infrastructure
+</div>
+
+<div class="output">
+Scanning network...
+</div>
+
+<div class="success">
+[OK] Servers detected
+</div>
+
+<div class="success">
+[OK] Network services
+</div>
+
+<div class="success">
+[OK] Security monitoring
+</div>
+
+<br>
+
+<div class="command">
+<span class="cursor"></span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- STATUS BAR -->
+
+<div class="status-bar">
+
+<div class="status-item">
+
+<div class="status-name">
+System
+</div>
+
+<div class="status-value">
+● Operational
+</div>
+
+</div>
+
+<div class="status-item">
+
+<div class="status-name">
+Network
+</div>
+
+<div class="status-value">
+CONNECTED
+</div>
+
+</div>
+
+<div class="status-item">
+
+<div class="status-name">
+Security
+</div>
+
+<div class="status-value">
+MONITORING
+</div>
+
+</div>
+
+<div class="status-item">
+
+<div class="status-name">
+Availability
+</div>
+
+<div class="status-value">
+24/7 READY
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
 
-<section id="contact" class="overlay">
-<h2>Contact</h2>
-<div class="contact">
-<p>Email: inigojayaraj@gmail.com</p>
-<p>LinkedIn: <a href="https://linkedin.com/in/inigo" target="_blank">linkedin.com/in/inigo</a></p>
-<p>GitHub: <a href="https://github.com/inigo" target="_blank">github.com/inigo</a></p>
+
+<!-- =====================================================
+     SKILLS
+===================================================== -->
+
+<section class="section" id="skills">
+
+<div class="container">
+
+<div class="section-title">
+02 / technical capabilities
 </div>
+
+<h2 class="section-heading">
+Core <span class="green">Skills</span>
+</h2>
+
+
+<div class="skills-grid">
+
+
+<div class="skill-card">
+
+<div class="skill-icon">
+<i class="fa-solid fa-server"></i>
+</div>
+
+<h3>System Administration</h3>
+
+<p>
+Windows Server administration, Active Directory,
+Group Policy, user management, server configuration,
+backup management and infrastructure troubleshooting.
+</p>
+
+</div>
+
+
+<div class="skill-card">
+
+<div class="skill-icon">
+<i class="fa-solid fa-network-wired"></i>
+</div>
+
+<h3>Network Engineering</h3>
+
+<p>
+LAN/WAN infrastructure, TCP/IP, DHCP, DNS,
+router and switch configuration, VLAN concepts,
+network troubleshooting and connectivity analysis.
+</p>
+
+</div>
+
+
+<div class="skill-card">
+
+<div class="skill-icon">
+<i class="fa-solid fa-shield-halved"></i>
+</div>
+
+<h3>Cybersecurity</h3>
+
+<p>
+Network monitoring, packet analysis, security hardening,
+basic vulnerability assessment, firewall concepts,
+Wireshark analysis and security best practices.
+</p>
+
+</div>
+
+
+<div class="skill-card">
+
+<div class="skill-icon">
+<i class="fa-brands fa-windows"></i>
+</div>
+
+<h3>Windows Infrastructure</h3>
+
+<p>
+Active Directory domain services, organizational units,
+Group Policy Objects, Windows Server roles,
+permissions and centralized administration.
+</p>
+
+</div>
+
+
+<div class="skill-card">
+
+<div class="skill-icon">
+<i class="fa-solid fa-magnifying-glass-chart"></i>
+</div>
+
+<h3>Network Monitoring</h3>
+
+<p>
+Traffic inspection, connectivity testing,
+DNS/DHCP troubleshooting, packet capture analysis
+and identifying abnormal network behavior.
+</p>
+
+</div>
+
+
+<div class="skill-card">
+
+<div class="skill-icon">
+<i class="fa-solid fa-code"></i>
+</div>
+
+<h3>Automation & Tools</h3>
+
+<p>
+PowerShell, command-line administration,
+system diagnostics, scripting fundamentals
+and infrastructure automation concepts.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
 
-<footer class="overlay"><p>© 2026 Inigo</p></footer>
+
+<!-- =====================================================
+     PROJECTS
+===================================================== -->
+
+<section class="section" id="projects">
+
+<div class="container">
+
+<div class="section-title">
+03 / infrastructure labs
+</div>
+
+<h2 class="section-heading">
+Technical <span class="green">Projects</span>
+</h2>
+
+
+<div class="project-grid">
+
+
+<!-- SYSTEM ADMIN -->
+
+<div class="project-card">
+
+<div class="project-number">
+PROJECT_01 // SYSADMIN
+</div>
+
+<h3>
+Windows Server Infrastructure
+</h3>
+
+<p>
+Designed and administered a Windows Server environment
+focused on centralized identity, access control and
+system management.
+</p>
+
+<ul class="project-list">
+
+<li>Windows Server deployment</li>
+
+<li>Active Directory configuration</li>
+
+<li>Domain Controller setup</li>
+
+<li>Organizational Unit management</li>
+
+<li>Group Policy configuration</li>
+
+<li>User and permission management</li>
+
+<li>Server troubleshooting</li>
+
+</ul>
+
+</div>
+
+
+<!-- NETWORK -->
+
+<div class="project-card">
+
+<div class="project-number">
+PROJECT_02 // NETWORK
+</div>
+
+<h3>
+Network Infrastructure
+</h3>
+
+<p>
+Built and troubleshot network infrastructure involving
+routers, switches and essential network services.
+</p>
+
+<ul class="project-list">
+
+<li>Router configuration</li>
+
+<li>Switch configuration</li>
+
+<li>IP addressing</li>
+
+<li>DHCP implementation</li>
+
+<li>DNS configuration</li>
+
+<li>LAN connectivity testing</li>
+
+<li>Network troubleshooting</li>
+
+</ul>
+
+</div>
+
+
+<!-- CYBERSECURITY -->
+
+<div class="project-card">
+
+<div class="project-number">
+PROJECT_03 // SECURITY
+</div>
+
+<h3>
+Network Security Monitoring
+</h3>
+
+<p>
+Performed network traffic analysis and security monitoring
+to understand suspicious traffic patterns and improve
+network visibility.
+</p>
+
+<ul class="project-list">
+
+<li>Wireshark packet analysis</li>
+
+<li>TCP/IP traffic inspection</li>
+
+<li>Network monitoring</li>
+
+<li>Security event investigation</li>
+
+<li>Firewall concepts</li>
+
+<li>Basic vulnerability analysis</li>
+
+<li>Security hardening</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     EXPERIENCE
+===================================================== -->
+
+<section class="section" id="experience">
+
+<div class="container">
+
+<div class="section-title">
+04 / professional workflow
+</div>
+
+<h2 class="section-heading">
+What I <span class="green">Work With</span>
+</h2>
+
+
+<div class="timeline">
+
+
+<div class="timeline-item">
+
+<div class="timeline-date">
+SYSTEM ADMINISTRATION
+</div>
+
+<h3>
+Infrastructure & Server Management
+</h3>
+
+<p>
+Experience working with Windows-based infrastructure,
+user account administration, Active Directory,
+Group Policy, server configuration and troubleshooting.
+The focus is maintaining reliable systems and
+minimizing service interruptions.
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<div class="timeline-date">
+NETWORK ENGINEERING
+</div>
+
+<h3>
+Network Configuration & Troubleshooting
+</h3>
+
+<p>
+Hands-on work with IP addressing, LAN infrastructure,
+routers, switches, DNS and DHCP services. Network
+issues are investigated systematically using connectivity
+tests, configuration analysis and traffic inspection.
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<div class="timeline-date">
+CYBERSECURITY
+</div>
+
+<h3>
+Security Monitoring & Analysis
+</h3>
+
+<p>
+Practical cybersecurity work involving packet capture,
+traffic inspection, network monitoring and security
+best practices. The objective is to understand network
+behavior and identify potential security issues.
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<div class="timeline-date">
+CONTINUOUS LEARNING
+</div>
+
+<h3>
+Cybersecurity & Infrastructure Research
+</h3>
+
+<p>
+Continuously developing skills in system administration,
+network security, cybersecurity tools, infrastructure
+monitoring and defensive security techniques.
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     COMMAND CENTER
+===================================================== -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-title">
+05 / command center
+</div>
+
+<h2 class="section-heading">
+Security <span class="green">Toolkit</span>
+</h2>
+
+
+<div class="command-panel">
+
+
+<div class="command-box">
+
+<h3>
+$ infrastructure --tools
+</h3>
+
+<p>
+[+] Windows Server<br>
+[+] Active Directory<br>
+[+] Group Policy<br>
+[+] DNS / DHCP<br>
+[+] PowerShell<br>
+[+] Router / Switch CLI
+</p>
+
+</div>
+
+
+<div class="command-box">
+
+<h3>
+$ security --tools
+</h3>
+
+<p>
+[+] Wireshark<br>
+[+] Network Monitoring<br>
+[+] Packet Analysis<br>
+[+] Firewall Concepts<br>
+[+] Security Hardening<br>
+[+] Vulnerability Analysis
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section class="section" id="contact">
+
+<div class="container">
+
+<div class="section-title">
+06 / establish connection
+</div>
+
+<h2 class="section-heading">
+Contact <span class="green">Me</span>
+</h2>
+
+
+<div class="contact-box">
+
+
+<div class="contact-item">
+
+<i class="fa-solid fa-envelope"></i>
+
+<a href="mailto:inigojayaraj@gmail.com">
+inigojayaraj@gmail.com
+</a>
+
+</div>
+
+
+<div class="contact-item">
+
+<i class="fa-brands fa-linkedin"></i>
+
+<a href="https://linkedin.com/in/inigo"
+target="_blank">
+
+linkedin.com/in/inigo
+
+</a>
+
+</div>
+
+
+<div class="contact-item">
+
+<i class="fa-brands fa-github"></i>
+
+<a href="https://github.com/inigo"
+target="_blank">
+
+github.com/inigo
+
+</a>
+
+</div>
+
+
+<div class="contact-item">
+
+<i class="fa-solid fa-terminal"></i>
+
+<span class="muted">
+Available for IT / Network / Security opportunities
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+<div class="container">
+
+<span class="footer-green">
+[ SYSTEM ONLINE ]
+</span>
+
+&nbsp; // &nbsp;
+
+INIGO © 2026
+
+&nbsp; // &nbsp;
+
+IT • NETWORK • SECURITY
+
+</div>
+
+</footer>
+
+
+<!-- =====================================================
+     NETWORK ANIMATION
+===================================================== -->
 
 <script>
-// Show project
-function showProject(type){
-  document.querySelectorAll(".project-detail").forEach(el => el.style.display="none");
-  const selected = document.getElementById(type);
-  if(selected) selected.style.display="block";
-}
 
-// MATRIX EFFECT WITH TRAIL
-const canvas = document.getElementById("matrix");
+const canvas = document.getElementById("networkCanvas");
 const ctx = canvas.getContext("2d");
-let letters = "01";
-let fontSize = 20;
-let columns = 0;
-let drops = [];
-let delays = [];
 
-function initMatrix(){
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+let particles = [];
+let width;
+let height;
 
-  columns = Math.max(1, Math.floor(canvas.width / fontSize));
-  drops = new Array(columns).fill(0);
-  delays = new Array(columns).fill(0).map((_,i)=> i*5);
+function resizeCanvas(){
+
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+
+    particles = [];
+
+    const count =
+        Math.min(100, Math.floor(width / 15));
+
+    for(let i = 0; i < count; i++){
+
+        particles.push({
+
+            x:Math.random() * width,
+
+            y:Math.random() * height,
+
+            vx:(Math.random() - 0.5) * 0.35,
+
+            vy:(Math.random() - 0.5) * 0.35,
+
+            radius:Math.random() * 1.5 + 0.5
+
+        });
+
+    }
+
 }
 
-function drawMatrix(){
-  // subtle trail fade
-  ctx.fillStyle = "rgba(13,17,23,0.15)";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
+function drawNetwork(){
 
-  ctx.fillStyle = "#00ff00";
-  ctx.font = fontSize + "px monospace";
+    ctx.clearRect(0,0,width,height);
 
-  for(let i=0;i<columns;i++){
-    if(delays[i]>0){
-      delays[i] -= 1;
-      continue;
+    /* PARTICLES */
+
+    particles.forEach(p => {
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if(p.x < 0 || p.x > width){
+            p.vx *= -1;
+        }
+
+        if(p.y < 0 || p.y > height){
+            p.vy *= -1;
+        }
+
+        ctx.beginPath();
+
+        ctx.arc(
+            p.x,
+            p.y,
+            p.radius,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fillStyle = "rgba(0,255,157,.65)";
+
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = "#00ff9d";
+
+        ctx.fill();
+
+        ctx.shadowBlur = 0;
+
+    });
+
+
+    /* CONNECTIONS */
+
+    for(let i = 0; i < particles.length; i++){
+
+        for(let j = i + 1; j < particles.length; j++){
+
+            const dx =
+                particles[i].x - particles[j].x;
+
+            const dy =
+                particles[i].y - particles[j].y;
+
+            const distance =
+                Math.sqrt(dx * dx + dy * dy);
+
+            if(distance < 130){
+
+                const opacity =
+                    1 - distance / 130;
+
+                ctx.beginPath();
+
+                ctx.moveTo(
+                    particles[i].x,
+                    particles[i].y
+                );
+
+                ctx.lineTo(
+                    particles[j].x,
+                    particles[j].y
+                );
+
+                ctx.strokeStyle =
+                    `rgba(0,255,157,${opacity * .12})`;
+
+                ctx.lineWidth = .7;
+
+                ctx.stroke();
+
+            }
+
+        }
+
     }
-    const text = letters.charAt(Math.floor(Math.random()*letters.length));
-    ctx.fillText(text,i*fontSize,drops[i]*fontSize);
-    drops[i] += 2; // speed
-    if(drops[i]*fontSize > canvas.height){
-      drops[i] = 0;
-    }
-  }
-  requestAnimationFrame(drawMatrix);
+
+    requestAnimationFrame(drawNetwork);
+
 }
 
-// Initialize & draw
-initMatrix();
-drawMatrix();
+window.addEventListener(
+    "resize",
+    resizeCanvas
+);
 
-// Responsive canvas
-window.addEventListener("resize", initMatrix);
+resizeCanvas();
+drawNetwork();
+
+
+/* =====================================================
+   TERMINAL TYPE EFFECT
+===================================================== */
+
+const commands = [
+    "monitor --network",
+    "analyze --traffic",
+    "check --servers",
+    "audit --security",
+    "status --infrastructure"
+];
+
+let commandIndex = 0;
+
+const terminalCommand =
+    document.querySelector(".terminal-body .command:last-child");
+
+function updateTerminal(){
+
+    if(!terminalCommand) return;
+
+    const cursor =
+        terminalCommand.querySelector(".cursor");
+
+    if(cursor){
+
+        terminalCommand.innerHTML =
+            '<span class="command-text"></span>' +
+            '<span class="cursor"></span>';
+
+        const text =
+            terminalCommand.querySelector(".command-text");
+
+        let index = 0;
+
+        const typing =
+            setInterval(() => {
+
+                text.textContent =
+                    commands[commandIndex].substring(
+                        0,
+                        index
+                    );
+
+                index++;
+
+                if(index >
+                    commands[commandIndex].length){
+
+                    clearInterval(typing);
+
+                    setTimeout(() => {
+
+                        commandIndex =
+                            (commandIndex + 1)
+                            % commands.length;
+
+                        updateTerminal();
+
+                    },1800);
+
+                }
+
+            },60);
+
+    }
+
+}
+
+setTimeout(updateTerminal,1200);
+
 </script>
 
 </body>
